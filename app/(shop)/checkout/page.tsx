@@ -46,7 +46,7 @@ export default function CheckoutPage() {
         `--------------------------%0A` +
         `*Address:* ${formData.address}`;
 
-      window.location.href = `https://wa.me/919866326712?text=${message}`;
+      window.location.href = `https://wa.me/919392792193?text=${message}`;
       clearCart();
     } catch (err: any) {
       alert("Error: " + err.message);
