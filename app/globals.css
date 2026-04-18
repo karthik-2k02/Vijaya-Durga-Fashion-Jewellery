@@ -12,15 +12,103 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  /* Prevent horizontal scroll from pulsing animations */
+  overflow-x: hidden; 
+  width: 100%;
+}
+
+/* --- CUSTOM ANIMATIONS --- */
+
+/* 1. Marquee: Smooth sliding for promo banners */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 2. Fade In Up: Soft entrance for text */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Reveal: Cinematic unveiling of headings */
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* 4. Shimmer: Diamond-glint effect for luxury buttons */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 5. Float: Elegant hovering for jewelry icons */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* --- UTILITY CLASSES --- */
+
+/* Marquee: Responsive speed & layout */
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-reveal {
+  animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #0b422c 25%, #1a6d4b 50%, #0b422c 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* --- MOBILE RESPONSIVENESS (Media Queries) --- */
+
+@media (max-width: 768px) {
+  /* Increase speed on mobile for shorter attention spans */
+  .animate-marquee {
+    animation-duration: 20s;
+  }
+
+  /* Reduce movement on mobile to prevent clipping */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* Faster reveal for mobile devices */
+  .animate-reveal {
+    animation-duration: 1.2s;
+  }
 }
